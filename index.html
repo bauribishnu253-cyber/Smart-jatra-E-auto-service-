@@ -1,282 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Jatra – E-Auto Service</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
-        body {
-            background: linear-gradient(135deg, #87CEEB, #32CD32);
-            color: #000080;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 15px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        header h1 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-        header p {
-            font-size: 0.9rem;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            flex: 1;
-        }
-        .section {
-            margin-bottom: 30px;
-            padding: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #000080;
-            font-size: 1rem;
-        }
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #32CD32;
-        }
-        button {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #87CEEB, #32CD32);
-            color: white;
-            font-weight: 500;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        button:hover {
-            transform: scale(1.05);
-        }
-        .payment-box {
-            background: #FFD700;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .payment-box img {
-            max-width: 200px;
-            margin: 10px 0;
-        }
-        .map-btn {
-            display: none;
-            margin-top: 20px;
-        }
-        footer {
-            padding: 15px;
-            text-align: center;
-            margin-top: auto;
-        }
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            header h1 {
-                font-size: 1.2rem;
-            }
-            .section {
-                padding: 15px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Jatra E-Auto Booking | Durgapur</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+:root{
+  --sky:#e9f7ff;
+  --green:#2ecc71;
+  --navy:#0a2540;
+  --glass:rgba(255,255,255,0.35);
+}
+
+*{box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+  margin:0;
+  background:linear-gradient(135deg,#dff3ff,#e8fff3);
+  color:var(--navy);
+}
+
+/* Header */
+header{
+  padding:15px 20px;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(10px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+header b{color:var(--green);}
+
+/* Hero */
+.hero{
+  height:60vh;
+  background:url('https://images.unsplash.com/photo-1600077106724-946750eeaf8c') center/cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.hero-card{
+  background:var(--glass);
+  backdrop-filter:blur(18px);
+  padding:30px;
+  border-radius:18px;
+  text-align:center;
+  width:90%;
+  max-width:420px;
+}
+
+/* Booking Card */
+.card{
+  margin:-80px auto 40px;
+  background:var(--glass);
+  backdrop-filter:blur(18px);
+  border-radius:20px;
+  padding:25px;
+  width:92%;
+  max-width:450px;
+}
+
+input,select{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border-radius:10px;
+  border:none;
+}
+
+.notice{
+  background:#fff4c2;
+  padding:10px;
+  border-radius:10px;
+  font-size:13px;
+  margin-top:10px;
+}
+
+/* Payment */
+.payment{
+  background:var(--glass);
+  backdrop-filter:blur(18px);
+  border-radius:20px;
+  padding:20px;
+  width:92%;
+  max-width:450px;
+  margin:auto;
+}
+
+.qr{
+  width:160px;
+  display:block;
+  margin:10px auto;
+}
+
+button{
+  background:linear-gradient(135deg,#2ecc71,#27ae60);
+  color:white;
+  border:none;
+  padding:12px;
+  width:100%;
+  border-radius:12px;
+  font-size:16px;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+/* Footer */
+footer{
+  margin-top:40px;
+  background:#0a2540;
+  color:white;
+  padding:20px;
+  text-align:center;
+}
+footer a{color:#2ecc71;text-decoration:none;}
+</style>
 </head>
+
 <body>
-    <header class="glass">
-        <h1>Smart Jatra – E-Auto Service (Durgapur)</h1>
-        <p>📞 7478578232 / 9564681311 | 📧 smartjatra@gmail.com</p>
-    </header>
 
-    <div class="container">
-        <section class="section glass" id="booking-form">
-            <h2 style="text-align: center; margin-bottom: 20px;">Book Your Ride</h2>
-            <form id="bookingForm">
-                <div class="form-group">
-                    <label for="name">Passenger Name *</label>
-                    <input type="text" id="name" required maxlength="50">
-                </div>
-                <div class="form-group">
-                    <label for="mobile">Verified Mobile Number *</label>
-                    <input type="tel" id="mobile" pattern="^[6-9]\d{9}$" required maxlength="10" placeholder="e.g., 9876543210">
-                </div>
-                <div class="form-group">
-                    <label for="destination">Destination *</label>
-                    <input type="text" id="destination" required maxlength="100">
-                </div>
-                <div class="form-group">
-                    <label for="distance">Distance (KM) *</label>
-                    <input type="number" id="distance" min="0" step="0.1" required>
-                </div>
-                <div class="form-group">
-                    <label for="passengers">Number of Passengers *</label>
-                    <select id="passengers" required>
-                        <option value="">Select</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="date">Date *</label>
-                    <input type="date" id="date" required>
-                </div>
-                <div class="form-group">
-                    <label for="time">Time *</label>
-                    <input type="time" id="time" required>
-                </div>
-                <div class="form-group">
-                    <label for="transactionId">Transaction ID *</label>
-                    <input type="text" id="transactionId" required minlength="8" maxlength="20" placeholder="Enter after payment">
-                </div>
-                <div class="form-group">
-                    <button type="button" id="gpsBtn">Capture GPS Location</button>
-                    <input type="hidden" id="gpsLocation">
-                </div>
-                <button type="button" id="confirmBtn">Confirm Booking</button>
-            </form>
-        </section>
+<header>
+  <div><b>Smart Jatra</b> E-Auto Service</div>
+  <div>📞 7478578232 | 9564681311</div>
+</header>
 
-        <section class="section glass payment-box">
-            <h3>₹50 Advance Payment Mandatory</h3>
-            <p>Booking will NOT confirm without payment.</p>
-            <img src="https://i.ibb.co/N6dz7TZP/IMG-20260129-WA0016.jpg" alt="PhonePe QR">
-            <br>
-            <a href="upi://pay?pa=Q893088292@ybl&pn=SmartJatra&am=50&cu=INR" target="_blank">
-                <button>Pay ₹50 via UPI</button>
-            </a>
-        </section>
+<section class="hero">
+  <div class="hero-card">
+    <h2>Book Your Ride</h2>
+    <p>Safe • Comfortable • Eco-Friendly</p>
+  </div>
+</section>
 
-        <button class="map-btn" id="mapBtn">Navigate to Pickup Stand</button>
-    </div>
+<section class="card">
+  <h3>Booking Details</h3>
 
-    <footer class="glass">
-        <p>📞 7478578232 / 9564681311 | 📧 smartjatra@gmail.com</p>
-        <p>© Smart Jatra</p>
-    </footer>
+  <input id="name" placeholder="Passenger Name" required>
+  <input id="mobile" placeholder="Verified Mobile Number" required>
+  <input id="destination" placeholder="Destination" required>
 
-    <script>
-        // Set date limits
-        const today = new Date();
-        const maxDate = new Date();
-        maxDate.setDate(today.getDate() + 7);
-        const dateInput = document.getElementById('date');
-        dateInput.min = today.toISOString().split('T')[0];
-        dateInput.max = maxDate.toISOString().split('T')[0];
+  <select id="passengers">
+    <option value="">Passengers (Max 5)</option>
+    <option>1</option><option>2</option><option>3</option>
+    <option>4</option><option>5</option>
+  </select>
 
-        // GPS Capture
-        document.getElementById('gpsBtn').addEventListener('click', () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    const lat = position.coords.latitude;
-                    const lon = position.coords.longitude;
-                    document.getElementById('gpsLocation').value = `${lat},${lon}`;
-                    alert('GPS Location Captured!');
-                }, () => {
-                    alert('Unable to retrieve location.');
-                });
-            } else {
-                alert('Geolocation not supported.');
-            }
-        });
+  <input type="date" id="date">
+  <input type="time" id="time">
 
-        // Confirm Booking
-        document.getElementById('confirmBtn').addEventListener('click', () => {
-            const form = document.getElementById('bookingForm');
-            const distance = parseFloat(document.getElementById('distance').value);
-            const passengers = parseInt(document.getElementById('passengers').value);
-            const transactionId = document.getElementById('transactionId').value.trim();
-            const gps = document.getElementById('gpsLocation').value;
+  <input id="distance" placeholder="Distance (km)" required>
 
-            // Check distance popup
-            if (!confirm('Distance 4.5 km এর বেশি কি?')) {
-                return;
-            }
+  <div class="notice">
+    ⚠️ ₹50 advance mandatory for trips above 4.5 km  
+  </div>
 
-            // Validations
-            if (passengers > 5) {
-                alert('Maximum 5 passengers allowed.');
-                return;
-            }
-            if (distance <= 4.5) {
-                alert('Distance must be greater than 4.5 km.');
-                return;
-            }
-            if (!transactionId || transactionId.length < 8) {
-                alert('Complete ₹50 payment and enter Transaction ID first (min 8 characters).');
-                return;
-            }
-            if (!form.checkValidity()) {
-                alert('Please fill all required fields correctly.');
-                return;
-            }
+  <input id="txn" placeholder="UPI Transaction ID">
 
-            // Generate message
-            const name = document.getElementById('name').value;
-            const mobile = document.getElementById('mobile').value;
-            const destination = document.getElementById('destination').value;
-            const date = document.getElementById('date').value;
-            const time = document.getElementById('time').value;
-            const message = `Booking Details:\nName: ${name}\nMobile: ${mobile}\nDestination: ${destination}\nDistance: ${distance} km\nPassengers: ${passengers}\nDate: ${date}\nTime: ${time}\nTransaction ID: ${transactionId}\nPayment Status: ₹50 Paid\nGPS: ${gps}\nNote: Customer confirmed distance > 4.5 km`;
+  <button onclick="confirmBooking()">Confirm Booking</button>
+</section>
 
-            // WhatsApp
-            const whatsappUrl = `https://wa.me/917478578232?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
+<section class="payment">
+  <h3>Pay ₹50 Advance</h3>
 
-            // Gmail
-            const gmailUrl = `mailto:smartjatra@gmail.com?subject=Smart%20Jatra%20Booking&body=${encodeURIComponent(message)}`;
-            window.open(gmailUrl, '_blank');
+  <img class="qr" src="https://i.ibb.co/N6dz7TZP/IMG-20260129-WA0016.jpg">
 
-            // Show map button
-            document.getElementById('mapBtn').style.display = 'block';
-        });
+  <button onclick="payUPI()">Pay Now (UPI)</button>
 
-        // Map Navigation
-        document.getElementById('mapBtn').addEventListener('click', () => {
-            // Durgapur pickup stand approx coordinates (placeholder)
-            const pickupLat = 23.5204;
-            const pickupLon = 87.3119;
-            const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${pickupLat},${pickupLon}`;
-            window.open(mapsUrl, '_blank');
-        });
-    </script>
+  <p style="text-align:center;font-size:13px">
+    UPI ID: <b>Q893088292@ybl</b>
+  </p>
+</section>
+
+<div style="text-align:center;margin:20px">
+  <a target="_blank" href="https://maps.google.com/?q=Smart+Jatra+Durgapur">
+    📍 Navigate to Pickup Stand
+  </a>
+</div>
+
+<footer>
+  <p>📞 7478578232 / 9564681311</p>
+  <p>📧 smartjatra@gmail.com</p>
+  <p>© Smart Jatra – Durgapur</p>
+</footer>
+
+<script>
+/* EmailJS Init */
+emailjs.init("YOUR_PUBLIC_KEY");
+
+function payUPI(){
+  window.location.href =
+  "upi://pay?pa=Q893088292@ybl&pn=Smart%20Jatra&am=50&cu=INR";
+}
+
+function confirmBooking(){
+  let d = parseFloat(distance.value);
+  if(d < 4.5){
+    alert("Advance booking allowed only above 4.5 km");
+    return;
+  }
+
+  if(!confirm("Confirm distance is more than 4.5 km?")){
+    return;
+  }
+
+  let msg =
+`Smart Jatra Booking
+Name: ${name.value}
+Mobile: ${mobile.value}
+Destination: ${destination.value}
+Passengers: ${passengers.value}
+Date: ${date.value}
+Time: ${time.value}
+Distance: ${distance.value} km
+Transaction ID: ${txn.value}
+
+NOTE: Customer confirmed distance > 4.5 km`;
+
+  window.open(
+    "https://wa.me/917478578232?text="+encodeURIComponent(msg),
+    "_blank"
+  );
+
+  emailjs.send("SERVICE_ID","TEMPLATE_ID",{
+    message:msg
+  });
+}
+</script>
+
 </body>
 </html>
